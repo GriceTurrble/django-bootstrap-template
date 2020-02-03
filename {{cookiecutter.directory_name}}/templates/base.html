@@ -1,0 +1,52 @@
+{% comment %}
+  Base template for the full site. All other pages should extend from here.
+{% endcomment %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  {# Extra meta tags per page can go here #}
+  {% block head_extra_meta %}{% endblock %}
+
+  {## HEAD CSS ##}
+  {# Bootstrap 4, served locally #}
+  <link rel="stylesheet" href="{% static 'vendor/bootstrap-4.4.1/css/bootstrap.min.css' %}"/>
+  <link rel="stylesheet" href="{% static 'css/app.css' %}?v=0.1">  {# Tip: update the `?v` param to force browsers to recache a new file version. #}
+  {% block head_css %}{% endblock %}
+
+  {## HEAD JS - deferred scripts only! ##}
+  {# FontAwesome SVG styles #}
+  <script defer src="{% static 'vendor/fontawesome-free-5.12.0/js/all.min.js' %}"></script>
+  {% block head_js %}{% endblock head_js %}
+
+  <title>{% block head_title %}{% endblock %} | {{cookiecutter.project_title}}</title>
+</head>
+<body>
+  <header>
+    {% include "widgets/base_navbar.html" %}
+  </header>
+
+  {# All main content resides within a container #}
+  <main role="main" class="container {% block body_container_classes %}{% endblock %}">
+    {% block body_content %}{% endblock %}
+  </main>
+
+  <footer class="footer">
+    {% include "widgets/base_footer.html" %}
+  </footer>
+
+  {## JAVASCRIPT LOADED AFTER BODY ##}
+  {# jQuery required by Bootstrap #}
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  {# Bootstrap bundle (includes popper), served locally #}
+  <script src="{% static 'vendor/bootstrap-4.4.1/js/bootstrap.bundle.min.js' %}"></script>
+
+  {# App JavaScript #}
+  <script src="{% static 'js/app.js' %}?v=0.1"></script>  {# Tip: update the `?v` param to force browsers to recache a new file version. #}
+
+  {% block body_js %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block head_title %}Home{% endblock %}
+
+{% block body_content %}
+  {% comment %}
+    Ready to get started? Remove this comment and the `include` below, then add your own content.
+
+    Feel free to keep the `welcome_wagon.html` template as a reference, though!
+
+    NOTE navbar and footer content are handled by their own widgets
+    and `include`d in `base.html`.
+  {% endcomment %}
+
+  {% include "widgets/welcome_wagon.html" %}
+
+{% endblock %}
+
+{% block body_js %}
+  {# Add your JavaScript content here, where it will be included at the end of the <body> tag. #}
+{% endblock %}
