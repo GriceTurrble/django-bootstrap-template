@@ -14,6 +14,6 @@ filepath = os.path.join(
     "{{cookiecutter.directory_name}}", "{{cookiecutter.directory_name}}", "settings.py"
 )
 
-with fileinput.FileInput(filepath, inplace=True, backup='.bak') as thefile:
+with fileinput.FileInput(filepath, inplace=True) as thefile:
     for line in thefile:
         print(line.replace(target, new_key), end='')
