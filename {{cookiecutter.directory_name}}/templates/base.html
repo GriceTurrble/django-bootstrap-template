@@ -1,4 +1,4 @@
-{% comment %}
+{% raw %}{% comment %}
   Base template for the full site. All other pages should extend from here.
 {% endcomment %}
 {% load static %}
@@ -22,7 +22,7 @@
   <script defer src="{% static 'vendor/fontawesome-free-5.12.0/js/all.min.js' %}"></script>
   {% block head_js %}{% endblock head_js %}
 
-  <title>{% block head_title %}{% endblock %} | {{cookiecutter.project_title}}</title>
+  <title>{% block head_title %}{% endblock %} | {% endraw %}{{cookiecutter.project_title}}{% raw %}</title>
 </head>
 <body>
   <header>
@@ -50,3 +50,4 @@
   {% block body_js %}{% endblock %}
 </body>
 </html>
+{% endraw %}

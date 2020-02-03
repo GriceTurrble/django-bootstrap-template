@@ -1,6 +1,6 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+{% raw %}<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
   <div class="container">
-    <a class="navbar-brand" href="{% url "homepage" %}">{{cookiecutter.project_title}}</a>
+    <a class="navbar-brand" href="{% url "homepage" %}">{% endraw %}{{cookiecutter.project_title}}{% raw %}</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -43,3 +43,4 @@
     </div>
   </div>
 </nav>
+{% endraw %}
