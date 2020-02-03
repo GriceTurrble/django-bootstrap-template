@@ -1,6 +1,7 @@
 {
-    "directory_name": "my_project",
-    "project_title": "My Project",
-    "project_description": "a site that does stuff",
-    "name_for_license": "My Name"
+    "project_name": "My Project",
+    "project_slug": "{{ cookiecutter.project_name.lower()|replace(' ', '_')|replace('-', '_')|replace('.', '_')|trim() }}",
+    "description": "a site that does stuff",
+    "author_name": "Galen Rice",
+    "version": "0.1.0"
 }

@@ -13,7 +13,7 @@ def generate_key(length=50):
 
 target = "!!!SET_DJANGO_SECRET_KEY!!!"
 new_key = generate_key()
-filepath = os.path.join("{{cookiecutter.directory_name}}", "settings.py")
+filepath = os.path.join("{{cookiecutter.project_slug}}", "settings.py")
 
 with fileinput.FileInput(filepath, inplace=True) as thefile:
     for line in thefile:

@@ -14,7 +14,7 @@
   {## HEAD CSS ##}
   {# Bootstrap 4, served locally #}
   <link rel="stylesheet" href="{% static 'vendor/bootstrap-4.4.1/css/bootstrap.min.css' %}"/>
-  <link rel="stylesheet" href="{% static 'css/app.css' %}?v=0.1">  {# Tip: update the `?v` param to force browsers to recache a new file version. #}
+  <link rel="stylesheet" href="{% static 'css/app.css' %}?v={% endraw %}{{cookiecutter.version}}{% raw %}">  {# Tip: update the `?v` param to force browsers to recache a new file version. #}
   {% block head_css %}{% endblock %}
 
   {## HEAD JS - deferred scripts only! ##}
@@ -22,7 +22,7 @@
   <script defer src="{% static 'vendor/fontawesome-free-5.12.0/js/all.min.js' %}"></script>
   {% block head_js %}{% endblock head_js %}
 
-  <title>{% block head_title %}{% endblock %} | {% endraw %}{{cookiecutter.project_title}}{% raw %}</title>
+  <title>{% block head_title %}{% endblock %} | {% endraw %}{{cookiecutter.project_name}}{% raw %}</title>
 </head>
 <body>
   <header>
@@ -45,7 +45,7 @@
   <script src="{% static 'vendor/bootstrap-4.4.1/js/bootstrap.bundle.min.js' %}"></script>
 
   {# App JavaScript #}
-  <script src="{% static 'js/app.js' %}?v=0.1"></script>  {# Tip: update the `?v` param to force browsers to recache a new file version. #}
+  <script src="{% static 'js/app.js' %}?v={% endraw %}{{cookiecutter.version}}{% raw %}"></script>  {# Tip: update the `?v` param to force browsers to recache a new file version. #}
 
   {% block body_js %}{% endblock %}
 </body>
