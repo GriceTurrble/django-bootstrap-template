@@ -22,6 +22,18 @@
   {## HEAD JS - deferred scripts only! ##}
   {# FontAwesome SVG styles #}
   <script defer src="{% static 'vendor/fontawesome-free-5.12.0/js/all.min.js' %}"></script>
+  {% comment %}
+    FontAwesome can be served via CDN from their website.
+    However, their CDN support is on a per-account basis. In order to use a CDN,
+    you must create an account on fontawesome.com and request a kit.
+
+    If you choose that route, you may safely remove the local files from this project
+    and serve via your own CDN kit import.
+
+    The code, icons, and other FontAwesome files are covered by licenses as detailed here:
+    https://fontawesome.com/license/free
+  {% endcomment %}
+
   {% block head_js %}{% endblock head_js %}
 
   <title>{% block head_title %}{% endblock %} | {% endraw %}{{cookiecutter.project_name}}{% raw %}</title>
