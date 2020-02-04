@@ -7,7 +7,7 @@ from django.db import models
 from base_objects.typing import DTType
 
 
-class (models.QuerySet):
+class ProjectBaseQuerySet(models.QuerySet):
     """Base queryset with custom filtering methods for base abstract models."""
 
     ## `time_created` command-style filtering ##
