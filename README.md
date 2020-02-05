@@ -71,7 +71,7 @@ The same goes for `ProjectBaseQuerySet` when you add new fields to `ProjectBaseM
 
 Note that last part: that's where it can get tricky.
 
-### Subclassing `ProjectBaseQuerySet`
+#### Subclassing `ProjectBaseQuerySet`
 
 When you want to add custom fields to a specific model that subclasses `ProjectBaseModel`, you may be inclined to simply make a new QuerySet and/or Manager class and assign this to the `objects` manager on that model. However, doing so will overwrite `ProjectBaseQuerySet` as a manager of that model, making its methods unavailable.
 
