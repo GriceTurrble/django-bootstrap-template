@@ -65,11 +65,19 @@ MyModel.objects.filter(...).created_before(...).exclude(...)
 
 #### Extending `ProjectBaseModel` and `ProjectBaseQuerySet`
 
-`ProjectBaseModel`'s mainly serves as a hook for new base model functionality. Rather than updating each model in your project individually, you can add fields to the base model to ensure that all other models get updated automatically, and ensure that the same baseline functionality is available in any future model you use.
+`ProjectBaseModel` serves as a hook for functionality that is shared by all models within a project. Rather than updating each model in your project individually, you can add fields to the base model to ensure that all other models get updated automatically, and ensure that the same baseline functionality is available in any future model you use.
 
-Further, you can extend custom managers for your other models by following a similar pattern used for `ProjectBaseQuerySet`'s methods. Now, while Django's documentation regarding [Custom managers and model inheritance](https://docs.djangoproject.com/en/3.0/topics/db/managers/#custom-managers-and-model-inheritance) is quite helpful, their solution appears to revolve around creating multiple managers for a subclassed abstract model with its own base manager; and I find it frustrating to have to use some other manager besides `objects` (personal opinion, take that with a grain of salt).
+The same goes for `ProjectBaseQuerySet` when you add new fields to `ProjectBaseModel` and want to use custom filtering, similar to those used for `time_created` and `time_modified`. Simply add new methods to this QuerySet and they'll become available to every model that subclasses `ProjectBaseModel` and *uses its same QuerySet manager*.
 
-My recommendation is to subclass `ProjectBaseQuerySet`, then use the subclass as the new model's manager:
+Note that last part: that's where it can get tricky.
+
+### Subclassing `ProjectBaseQuerySet`
+
+When you want to add custom fields to a specific model that subclasses `ProjectBaseModel`, you may be inclined to simply make a new QuerySet and/or Manager class and assign this to the `objects` manager on that model. However, doing so will overwrite `ProjectBaseQuerySet` as a manager of that model, making its methods unavailable.
+
+Django's documentation regarding [Custom managers and model inheritance](https://docs.djangoproject.com/en/3.0/topics/db/managers/#custom-managers-and-model-inheritance) is quite helpful here. However, their solution revolves around creating multiple managers for a subclassed abstract model with its own base manager, so that you may need to reference a different manager besides `objects`.
+
+Personally, I find it frustrating to use any other manager besides `objects` unless absolutely necessary; and I want to retain the ability to chain all the different custom methods together. My solution and recommendation is to subclass `ProjectBaseQuerySet`, then use the subclass as the new model's manager:
 
 ```python
 from base_object.managers import ProjectBaseQuerySet
@@ -82,11 +90,13 @@ class MyModel(ProjectBaseModel):
     objects = MyQuerySet.as_manager()
 ```
 
-This way, all methods from the base model's QuerySet are still available, the new methods can be found in the `objects` manager, and they can all be chained together:
+This way, all methods from the base model's QuerySet are still available in the `objects` manager; the new methods can also be found in the `objects` manager; and they can all be chained together:
 
 ```python
 MyModel.objects.filter(...).my_new_method().created_before(...)
 ```
+
+All of that, as I said, is a personal opinion: you can do differently as suits your needs.
 
 ### Starter templates
 
@@ -101,8 +111,11 @@ The front page you see when you first launch the project is a static template th
   * I would recommend keeping the `welcome_wagon.html` file in your project as a reference.
 * One last template, `template_of_templates.html`, contains a basis for new site templates. It includes the `{% extends %}` tag for `base.html` and a copy of each `{% block %}` tag used in that base template. You can easily start up a new page by copying this file, adding the content you need, and removing the blocks you aren't changing.
 
-### Other contents
+### Other project contents
 
+* `base_objects` includes a barebones [AppConfig](https://docs.djangoproject.com/en/3.0/ref/applications/), located in `base_objects/apps.py`.
+  * This is a good place to connect model signals (as noted in the docs linked above), rather than the often-practiced method of writing signal methods into `models.py`.
+  * Note also `base_objects/__init__.py`, where a `default_app_config` is defined, as Django recommends for app authors. This tells Django explicitly that the `INSTALLED_APPS` entry `"base_objects"` should use the specified AppConfig automatically.
 * A project-level `static/` directory is available to dump static files that don't fit within an app structure. You can still use app-level static files as needed (and remember to run `collectstatic` in production!), but it's good to have a central spot for site-level static content.
 * The project is automatically built with the same MIT license used for the template repo, including your entry for Author Name and the current year.
 * The `base_objects` app has some sparse [type hinting](https://docs.python.org/3/library/typing.html) built into the methods for `base_objects.managers.ProjectBaseQuerySet`. Running the project in Python <3.5 (which is [technically not supported in Django 3](https://docs.djangoproject.com/en/3.0/releases/3.0/)) will cause errors due to these type hints.
