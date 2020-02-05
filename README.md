@@ -50,7 +50,7 @@ Doing so, every model in your application will automatically include the fields 
 | `created_before(dt)` | Model instances created (via `time_created`) before `dt` (a `datetime.datetime` or `datetime.date` object), inclusive (will return instances of `dt == time_created`). |
 | `created_after(dt)` | Instances created after `dt`. |
 | `created_on_date(dt)` | Instances created on the date of `dt`. Uses Django's [date field lookup](https://docs.djangoproject.com/en/3.0/ref/models/querysets/#date). `dt` is coerced to a `datetime.date` object before being used in the query. |
-| `created_between(dt1, dt2)` | Instances created within a [range field lookup](https://docs.djangoproject.com/en/3.0/ref/models/querysets/#range) between `dt1` and `dt2`, inclusive. |
+| `created_between(dt1, dt2)` | Instances created between `dt1` and `dt2`, inclusive. Uses Django's [range field lookup](https://docs.djangoproject.com/en/3.0/ref/models/querysets/#range) (Note the warnings in their documentation for edge cases). |
 | `modified_before(dt)` | Same as `created_before`, for `time_modified` field. |
 | `modified_after(dt)` | Same as `created_after`, for `time_modified` field. |
 | `modified_on_date(dt)` | Same as `created_on_date`, for `time_modified` field. |
