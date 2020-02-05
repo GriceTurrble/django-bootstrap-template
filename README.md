@@ -13,17 +13,7 @@ A [`cookiecutter`](https://github.com/cookiecutter/cookiecutter) template for a 
 1. Run `pip install cookiecutter` to be able to copy this project template.
 2. Run `cookiecutter https://github.com/GriceTurrble/django3-site-template.git` to build the project. Follow the prompts to set up the project to your liking.
 3. Create a new virtual environment using `python -m venv <name>`. Run its activate script, consider running `python -m pip install -U pip` to upgrade the venv's Pip, then `cd` to the project directory.
-4. Run `pip install -r requirements.txt` for all project requirements, which are fairly basic (Django and some development packages, such as [Black](https://github.com/psf/black) and [pylint](https://github.com/PyCQA/pylint) with [pylint-django](https://github.com/PyCQA/pylint-django) plugin).
-    * Remember to run `pylint` with `--load-plugins pylint_django` to enable the plugin for Django projects.
-    * This can be enabled in VS Code automatically by adding the setting:
-
-```json
-"python.linting.pylintArgs": [
-    "--load-plugins",
-    "pylint_django"
-]
-```
-
+4. Run `pip install -r requirements.txt` for all project requirements (which is really just Django itself).
 5. Navigate to the directory containing `manage.py`, then run:
 
 ```bash
