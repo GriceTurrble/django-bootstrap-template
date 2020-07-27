@@ -4,7 +4,7 @@ A [`cookiecutter`][1] template for a basic Django 3.0 site, with some helpful ba
 
 ## Requirements
 
-- Python 3.6+ (as required by Django 3, and for type hinting and f-string support)
+- **Python 3.6+** ([required by Django 3][12], and for type hinting and f-string support)
 - [`cookiecutter`][1] (install with Pip using the command in the **Installation** instructions below.
 - An amazing new project idea you want to bring to life quickly.
 
