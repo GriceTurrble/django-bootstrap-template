@@ -35,7 +35,9 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "base_objects",
+    # Custom base objects app.
+    # Follow this pattern to point to any new app's `AppConfig` subclass!
+    "base_objects.apps.BaseObjectsConfig",
     # Put your new apps here!
 ]
 
