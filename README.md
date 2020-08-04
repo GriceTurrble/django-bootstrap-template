@@ -6,7 +6,7 @@ A [`cookiecutter`][1] template for a basic Django 3.0 site, with some helpful ba
 
 ## Requirements
 
-- **Python 3.6+**. This is the [minimum supported version by Django 3.0][12], and is required for type hinting and f-string support.
+- **Python 3.6+**. This is the [minimum supported version by Django 3.1][12], and is required for type hinting and f-string support.
 - [`cookiecutter`][1] (install with Pip using the command in the **Installation** instructions below.
 - An amazing new project idea you want to bring to life quickly.
 
@@ -127,18 +127,18 @@ The front page you see when you first launch the project is a static template th
   - It is good practice to explicitly point to an app's config in the `INSTALLED_APPS` setting, instead of the app's name. For instance, `base_objects` is listed by its AppConfig class using `"base_objects.apps.BaseObjectsConfig"`.
 - A project-level `static/` directory is available to dump static files that don't fit within an app structure. You can still use app-level static files as needed (and remember to run `collectstatic` in production!), but it's good to have a central spot for site-level static content.
 - The project is automatically built with the same MIT license used for the template repo, including your entry for Author Name and the current year.
-- The `base_objects` app has some sparse [type hinting][11] built into the methods for `base_objects.managers.ProjectBaseQuerySet`. Running the project in Python <3.5 (which is [not supported in Django 3.0, anyway][12]) will cause errors due to these type hints.
+- The `base_objects` app has some sparse [type hinting][11] built into the methods for `base_objects.managers.ProjectBaseQuerySet`. Running the project in Python <3.5 (which is [not supported in Django 3.1, anyway][12]) will cause errors due to these type hints.
   - Since this is a template for a new project, you _should_ be (and I highly recommend) using the latest stable Python release that Django and your other dependencies support.
 
 [1]: https://github.com/cookiecutter/cookiecutter
 [2]: https://getbootstrap.com/
 [3]: https://fontawesome.com/
-[4]: https://docs.djangoproject.com/en/3.0/topics/db/models/#abstract-base-classes
-[5]: https://docs.djangoproject.com/en/3.0/ref/models/querysets/#date
-[6]: https://docs.djangoproject.com/en/3.0/ref/models/querysets/#range
-[7]: https://docs.djangoproject.com/en/3.0/topics/db/managers/#custom-managers-and-model-inheritance
-[8]: https://docs.djangoproject.com/en/3.0/ref/contrib/admin/#reversing-admin-urls
-[9]: https://docs.djangoproject.com/en/3.0/ref/applications/
-[10]: https://docs.djangoproject.com/en/3.0/topics/signals/#connecting-receiver-functions
+[4]: https://docs.djangoproject.com/en/3.1/topics/db/models/#abstract-base-classes
+[5]: https://docs.djangoproject.com/en/3.1/ref/models/querysets/#date
+[6]: https://docs.djangoproject.com/en/3.1/ref/models/querysets/#range
+[7]: https://docs.djangoproject.com/en/3.1/topics/db/managers/#custom-managers-and-model-inheritance
+[8]: https://docs.djangoproject.com/en/3.1/ref/contrib/admin/#reversing-admin-urls
+[9]: https://docs.djangoproject.com/en/3.1/ref/applications/
+[10]: https://docs.djangoproject.com/en/3.1/topics/signals/#connecting-receiver-functions
 [11]: https://docs.python.org/3/library/typing.html
-[12]: https://docs.djangoproject.com/en/3.0/releases/3.0/
+[12]: https://docs.djangoproject.com/en/3.1/releases/3.1/
