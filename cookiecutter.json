@@ -1,7 +1,18 @@
 {
-    "project_name": "My Project",
-    "project_slug": "{{ cookiecutter.project_name.lower()|replace(' ', '_')|replace('-', '_')|replace('.', '_')|trim() }}",
-    "description": "a site that does stuff",
-    "author_name": "Galen Rice",
-    "version": "0.1.0"
+  "project_name": "My Project",
+  "project_slug": "{{ cookiecutter.project_name.lower()|replace(' ', '_')|replace('-', '_')|replace('.', '_')|trim() }}",
+  "description": "a site that does stuff",
+  "author_name": "Galen Rice",
+  "version": "0.1.0",
+  "database_backend": [
+    "sqlite3",
+    "postgres"
+  ],
+  "open_source_license": [
+    "MIT",
+    "BSD",
+    "GPLv3",
+    "Apache Software License 2.0",
+    "Not open source"
+  ]
 }

@@ -1,0 +1,8 @@
+-r requirements.txt
+
+# Code formatting
+black
+
+# Testing with Pytest and pytest-django
+pytest
+pytest-django

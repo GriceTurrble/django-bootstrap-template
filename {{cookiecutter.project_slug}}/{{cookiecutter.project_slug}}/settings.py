@@ -11,6 +11,15 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 
+import environ
+
+# fmt: off
+# NOTE `fmt` comments disable/enable Black formatting in this section
+env = environ.Env(
+    DEBUG=(bool, False),
+)
+# fmt: on
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 
@@ -19,7 +28,7 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "!!!SET_DJANGO_SECRET_KEY!!!"
+SECRET_KEY = env("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -74,10 +83,18 @@ WSGI_APPLICATION = "{{ cookiecutter.project_slug }}.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 DATABASES = {
-    "default": {
+    {% if cookiecutter.database_backend == "sqlite3" %}"default": {
         "ENGINE": "django.db.backends.sqlite3",
         "NAME": BASE_DIR / "db.sqlite3",
-    }
+    }{% elif cookiecutter.database_backend == "postgres" %}"default": {
+        # Change these settings in your .env file. Don't save them here!
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": env("POSTGRES_NAME"),
+        "USER": env("POSTGRES_USER"),
+        "PASSWORD": env("POSTGRES_PASSWORD"),
+        "HOST": env("POSTGRES_HOST"),
+        "PORT": env("POSTGRES_PORT"),
+    }{% endif %}
 }
 
 
