@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
   {# App CSS #}
-  <link rel="stylesheet" href="{% static 'css/app.css' %}?v={% endraw %}{{cookiecutter.version}}{% raw %}">  {# Tip: update the `?v` param to force browsers to recache a new file version. #}
+  <link rel="stylesheet" href="{% static 'css/app.css' %}?v={% endraw %}{{ cookiecutter.version }}{% raw %}">  {# Tip: update the `?v` param to force browsers to recache a new file version. #}
   {% block head_css %}{% endblock %}
 
   {## HEAD JS - deferred scripts only! ##}
@@ -36,7 +36,7 @@
 
   {% block head_js %}{% endblock head_js %}
 
-  <title>{% block head_title %}{% endblock %} | {% endraw %}{{cookiecutter.project_name}}{% raw %}</title>
+  <title>{% block head_title %}{% endblock %} | {% endraw %}{{ cookiecutter.project_name }}{% raw %}</title>
 </head>
 <body>
   <header>
@@ -59,7 +59,7 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
   {# App JavaScript #}
-  <script src="{% static 'js/app.js' %}?v={% endraw %}{{cookiecutter.version}}{% raw %}"></script>  {# Tip: update the `?v` param to force browsers to recache a new file version. #}
+  <script src="{% static 'js/app.js' %}?v={% endraw %}{{ cookiecutter.version }}{% raw %}"></script>  {# Tip: update the `?v` param to force browsers to recache a new file version. #}
 
   {% block body_js %}{% endblock %}
 </body>
