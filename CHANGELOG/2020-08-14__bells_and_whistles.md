@@ -1,15 +1,4 @@
-# Changelog
-
-## 2020-08-17 - Changed from Dependabot.com to GitHub Dependabot proper.
-
-Just a bit of housekeeping here. Now uses GitHub Dependabot (config defined in `.github/dependabot.yml`) instead of the older Dependabot.com config.
-
-I got on this partly due to an issue with the dynamic `requirements.txt` file in the project template, which includes some Jinja2 template syntax to change some dependencies dynamically. Dependabot showed it can't read those lines, so dependency checking was disabled. This led to
-writing a compiled version of the requirements file, `.github/dependabot_reqs/requirements.txt`.
-
-This is all strictly project internals, and no changes have been made to the project template itself; but I figured I'd leave notes behind for myself and anyone else who might be curious. :)
-
-## 2020-08-14 - Environment variable support, database and license selection, README, `pytest` support, and some bells and whistles
+# 2020-08-14 - Environment variable support, database and license selection, README, `pytest` support, and some bells and whistles
 
 Template updated with some helpful features:
 
@@ -30,15 +19,6 @@ Template updated with some helpful features:
   - Tests for the `base_objects` app will be added in a future update.
 - `README.rst` added to the template project.
   - Partly borrowed from [`pydanny/cookiecutter-django`][2], adjusted to point to this site template. :)
-
-## 2020-08-04 - Update to Django 3.1
-
-The template now starts at Django 3.1, released same day as this PR.
-
-- `settings.py` has been regenerated from 3.1. This now uses `pathlib` to build `BASE_DIR`, instead of the older method that used `os.path`.
-- All docs references to 3.0 have been updated to link to the 3.1 docs.
-- Dependabot badge added to README cuz why not?
-- Files have been formatted with Black.
 
 [1]: https://django-environ.readthedocs.io/en/latest/
 [2]: https://github.com/pydanny/cookiecutter-django
