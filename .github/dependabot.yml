@@ -1,7 +1,13 @@
 version: 2
-
 updates:
-- package-ecosystem: "python"
+- package-ecosystem: pip
   directory: "/.github/dependabot_reqs/"
   schedule:
-    interval: "daily"
+    interval: daily
+    time: "08:00"
+    timezone: US/Eastern
+  open-pull-requests-limit: 10
+  reviewers:
+  - griceturrble
+  assignees:
+  - griceturrble
