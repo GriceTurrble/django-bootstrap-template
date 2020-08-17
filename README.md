@@ -1,7 +1,5 @@
 # GriceTurrble's Django 3 site template
 
-[![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=GriceTurrble/django3-site-template)](https://dependabot.com)
-
 A [`cookiecutter`][1] template for a basic Django 3.1 site, with some helpful base abstract models, [Bootstrap 4][2], [FontAwesome 5][3] Free, and some starter templates.
 
 ## Requirements
