@@ -1,8 +1,15 @@
-import random
-import os
+"""Post-generation hook for cookiecutter project.
+
+After the project is generated through ``cookiecutter``,
+``main()`` is called. Simple as that.
+"""
+
 from pathlib import Path
-import re
 import fileinput
+import os
+import random
+import re
+import string
 
 
 def remove_open_source_files():
@@ -36,9 +43,7 @@ def add_to_env_file(key, val):
 
 def new_secret_key(length=50):
     """Generate a new key to use for Django's SECRET_KEY setting."""
-    choice_set = (
-        "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*(-_+)"
-    )
+    choice_set = string.ascii_letters + string.digits + "!@#$%^&*(-_+)"
     return "".join([random.SystemRandom().choice(choice_set) for i in range(length)])
 
 
