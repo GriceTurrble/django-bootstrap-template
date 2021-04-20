@@ -1,10 +1,10 @@
 # GriceTurrble's Django 3 site template
 
-A [`cookiecutter`][1] template for a basic Django 3.1 site, with some helpful base abstract models, [Bootstrap 4][2], [FontAwesome 5][3] Free, and some starter templates.
+A [`cookiecutter`][1] template for a basic Django 3.2 site, with some helpful base abstract models, [Bootstrap 4][2], [FontAwesome 5][3] Free, and some starter templates.
 
 ## Requirements
 
-- **Python 3.6+**. This is the [minimum supported version by Django 3.1][12], and is required for type hinting and f-string support.
+- **Python 3.6+**. This is the [minimum supported version by Django 3.2][12], and is required for type hinting and f-string support.
 - [`cookiecutter`][1] (install with Pip using the command in the **Installation** instructions below.
 - An amazing new project idea you want to bring to life quickly.
 
@@ -33,35 +33,35 @@ What this project template provides is some starting points and working examples
 
 Here are some details on what this project template contains:
 
-### The `base_objects` app and `ProjectBaseModel`
+### The core `MyBaseModel`
 
-The `base_objects` app is a standard Django app included with the site template. This app is intended to contain [abstract models][4], utility methods, and other "common" objects you may use elsewhere in your site. Think of it as a root directory for custom Django objects.
+The `core` of the project contains [abstract models][4], utility methods, and other "common" objects you may use elsewhere in your site. Think of it as a root directory for custom Django objects.
 
-This app contains a single abstract model, `ProjectBaseModel`, with a custom QuerySet used as its model manager, `ProjectBaseQuerySet`. You may subclass `ProjectBaseModel` for each model in your application, instead of the standard `models.Model`:
+A single abstract model, `MyBaseModel`, is currently available. This includes a custom QuerySet used as its model manager, `MyBaseQuerySet`. You may subclass `MyBaseModel` for each model in your application, instead of the standard `models.Model`:
 
 ```python
 # my_app/models.py
 
-from base_objects.models import ProjectBaseModel
+from core.models import MyBaseModel
 
-class MyModel(ProjectBaseModel):
+class MyModel(MyBaseModel):
     ...
 ```
 
-Any model in your application that subclasses `ProjectBaseModel` will automatically include the fields defined in `ProjectBaseModel` and the queryset methods defined in `ProjectBaseQuerySet`, allowing them to share common logic and data without needing to rewrite them for each model.
+Any model in your application that subclasses `MyBaseModel` will automatically include the fields defined in `MyBaseModel` and the queryset methods defined in `MyBaseQuerySet`, allowing them to share common logic and data without needing to rewrite them for each model.
 
-For starters, this means the time-tracking fields `time_created` and `time_modified`, as well as these command-style QuerySet methods:
+For starters, this means the time-tracking fields `created_at` and `updated_at`, as well as these command-style QuerySet methods:
 
-| Method                      | Usage                                                                                                                                                                  |
-| --------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `created_before(dt)`        | Model instances created (via `time_created`) before `dt` (a `datetime.datetime` or `datetime.date` object), inclusive (will return instances of `dt == time_created`). |
-| `created_after(dt)`         | Instances created after `dt`.                                                                                                                                          |
-| `created_on_date(dt)`       | Instances created on the date of `dt`. Uses Django's [date field lookup][5]. `dt` is coerced to a `datetime.date` object before being used in the query.               |
-| `created_between(dt1, dt2)` | Instances created between `dt1` and `dt2`, inclusive. Uses Django's [range field lookup][6] (Note the warnings in their documentation for edge cases).                 |
-| `modified_before(dt)`       | Same as `created_before`, for `time_modified` field.                                                                                                                   |
-| `modified_after(dt)`        | Same as `created_after`, for `time_modified` field.                                                                                                                    |
-| `modified_on_date(dt)`      | Same as `created_on_date`, for `time_modified` field.                                                                                                                  |
-| `modified_between(dt)`      | Same as `created_between`, for `time_modified` field.                                                                                                                  |
+| Method                      | Usage                                                                                                                                                              |
+| --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `created_before(dt)`        | Model instances created (via `created_at`) before `dt` (a `datetime.datetime` or `datetime.date` object), inclusive (will return instances of `dt == created_at`). |
+| `created_after(dt)`         | Instances created after `dt`.                                                                                                                                      |
+| `created_on_date(dt)`       | Instances created on the date of `dt`. Uses Django's [date field lookup][5]. `dt` is coerced to a `datetime.date` object before being used in the query.           |
+| `created_between(dt1, dt2)` | Instances created between `dt1` and `dt2`, inclusive. Uses Django's [range field lookup][6] (Note the warnings in their documentation for edge cases).             |
+| `updated_before(dt)`        | Same as `created_before`, for `updated_at` field.                                                                                                                  |
+| `updated_after(dt)`         | Same as `created_after`, for `updated_at` field.                                                                                                                   |
+| `updated_on_date(dt)`       | Same as `created_on_date`, for `updated_at` field.                                                                                                                 |
+| `updated_between(dt)`       | Same as `created_between`, for `updated_at` field.                                                                                                                 |
 
 Each of these methods returns a QuerySet and can be chained like many other QuerySet methods:
 
@@ -70,30 +70,30 @@ MyModel.objects.filter(...).created_before(...).exclude(...)
 # and so on.
 ```
 
-#### Extending `ProjectBaseModel` and `ProjectBaseQuerySet`
+#### Extending `MyBaseModel` and `MyBaseQuerySet`
 
-`ProjectBaseModel` serves as a hook for functionality that is shared by all models within a project. Rather than updating each model in your project individually, you can add fields to the base model to ensure that all other models get updated automatically, and ensure that the same baseline functionality is available in any future model you use.
+`MyBaseModel` serves as a hook for functionality that is shared by all models within a project. Rather than updating each model in your project individually, you can add fields to the base model to ensure that all other models get updated automatically, and ensure that the same baseline functionality is available in any future model you use.
 
-The same goes for `ProjectBaseQuerySet` when you add new fields to `ProjectBaseModel` and want to use custom filtering, similar to those used for `time_created` and `time_modified`. Simply add new methods to this QuerySet and they'll become available to every model that subclasses `ProjectBaseModel` and _uses its same QuerySet manager_.
+The same goes for `MyBaseQuerySet` when you add new fields to `MyBaseModel` and want to use custom filtering, similar to those used for `created_at` and `updated_at`. Simply add new methods to this QuerySet and they'll become available to every model that subclasses `MyBaseModel` and _uses its same QuerySet manager_.
 
 Note that last part: that's where it can get tricky.
 
-#### Subclassing `ProjectBaseQuerySet`
+#### Subclassing `MyBaseQuerySet`
 
-When you want to add custom fields to a specific model that subclasses `ProjectBaseModel`, you may be inclined to simply make a new QuerySet and/or Manager class and assign this to the `objects` manager on that model. However, doing so will overwrite `ProjectBaseQuerySet` as a manager of that model, making its methods unavailable.
+When you want to add custom fields to a specific model that subclasses `MyBaseModel`, you may be inclined to simply make a new QuerySet and/or Manager class and assign this to the `objects` manager on that model. However, doing so will overwrite `MyBaseQuerySet` as a manager of that model, making its methods unavailable.
 
 Django's documentation regarding [Custom managers and model inheritance][7] is quite helpful here. However, their solution revolves around creating multiple managers for a subclassed abstract model with its own base manager, so that you may need to reference a different manager besides `objects`.
 
-Personally, I find it frustrating to use any other manager besides `objects` unless absolutely necessary; and I want to retain the ability to chain all the different custom methods together. My solution and recommendation is to subclass `ProjectBaseQuerySet`, then use the subclass as the new model's manager:
+Personally, I find it frustrating to use any other manager besides `objects` unless absolutely necessary; and I want to retain the ability to chain all the different custom methods together. My solution and recommendation is to subclass `MyBaseQuerySet`, then use the subclass as the new model's manager:
 
 ```python
-from base_object.managers import ProjectBaseQuerySet
+from base_object.managers import MyBaseQuerySet
 
-class MyQuerySet(ProjectBaseQuerySet):
+class MyQuerySet(MyBaseQuerySet):
     def my_new_method(self):
         ...
 
-class MyModel(ProjectBaseModel):
+class MyModel(MyBaseModel):
     objects = MyQuerySet.as_manager()
 ```
 
@@ -120,23 +120,20 @@ The front page you see when you first launch the project is a static template th
 
 ### Other project contents
 
-- `base_objects` includes a barebones [AppConfig][9], `BaseObjectsConfig`. You can find this in `base_objects/apps.py`.
-  - An app's AppConfig is a good place to [connect model signals][10] by importing an app's `signals.py` module in that app's `AppConfig.ready` method. This is typically cleaner than defining signal receivers in `models.py`.
-  - It is good practice to explicitly point to an app's config in the `INSTALLED_APPS` setting, instead of the app's name. For instance, `base_objects` is listed by its AppConfig class using `"base_objects.apps.BaseObjectsConfig"`.
 - A project-level `static/` directory is available to dump static files that don't fit within an app structure. You can still use app-level static files as needed (and remember to run `collectstatic` in production!), but it's good to have a central spot for site-level static content.
 - The project is automatically built with the same MIT license used for the template repo, including your entry for Author Name and the current year.
-- The `base_objects` app has some sparse [type hinting][11] built into the methods for `base_objects.managers.ProjectBaseQuerySet`. Running the project in Python <3.5 (which is [not supported in Django 3.1, anyway][12]) will cause errors due to these type hints.
+- The models, querysets, and managers added to `core` have some sparse [type hinting][11] built in. Running the project in Python <3.5 (which is [not supported in Django, anyway][12]) will cause errors due to these type hints.
   - Since this is a template for a new project, you _should_ be (and I highly recommend) using the latest stable Python release that Django and your other dependencies support.
 
 [1]: https://github.com/cookiecutter/cookiecutter
 [2]: https://getbootstrap.com/
 [3]: https://fontawesome.com/
-[4]: https://docs.djangoproject.com/en/3.1/topics/db/models/#abstract-base-classes
-[5]: https://docs.djangoproject.com/en/3.1/ref/models/querysets/#date
-[6]: https://docs.djangoproject.com/en/3.1/ref/models/querysets/#range
-[7]: https://docs.djangoproject.com/en/3.1/topics/db/managers/#custom-managers-and-model-inheritance
-[8]: https://docs.djangoproject.com/en/3.1/ref/contrib/admin/#reversing-admin-urls
-[9]: https://docs.djangoproject.com/en/3.1/ref/applications/
-[10]: https://docs.djangoproject.com/en/3.1/topics/signals/#connecting-receiver-functions
+[4]: https://docs.djangoproject.com/en/3.2/topics/db/models/#abstract-base-classes
+[5]: https://docs.djangoproject.com/en/3.2/ref/models/querysets/#date
+[6]: https://docs.djangoproject.com/en/3.2/ref/models/querysets/#range
+[7]: https://docs.djangoproject.com/en/3.2/topics/db/managers/#custom-managers-and-model-inheritance
+[8]: https://docs.djangoproject.com/en/3.2/ref/contrib/admin/#reversing-admin-urls
+[9]: https://docs.djangoproject.com/en/3.2/ref/applications/
+[10]: https://docs.djangoproject.com/en/3.2/topics/signals/#connecting-receiver-functions
 [11]: https://docs.python.org/3/library/typing.html
-[12]: https://docs.djangoproject.com/en/3.1/releases/3.1/
+[12]: https://docs.djangoproject.com/en/3.2/releases/3.2/
