@@ -3,6 +3,9 @@
 # Code formatting
 black
 
+# Linting
+flake8
+
 # Testing with Pytest and pytest-django
 pytest
 pytest-django

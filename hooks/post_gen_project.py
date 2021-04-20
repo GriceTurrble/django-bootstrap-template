@@ -9,6 +9,7 @@ import fileinput
 import os
 import random
 import re
+import secrets
 import string
 
 
@@ -36,15 +37,15 @@ def remove_gplv3_files():
 
 def add_to_env_file(key, val):
     """Add the given key and value to the environment file."""
-    env_file_path = Path("{{ cookiecutter.project_slug }}") / ".env"
+    env_file_path = Path("{{ cookiecutter.project_slug }}") / "core" / ".env"
     with open(env_file_path, "a") as envfile:
         envfile.write(f"{key}={val}\n")
 
 
 def new_secret_key(length=50):
     """Generate a new key to use for Django's SECRET_KEY setting."""
-    choice_set = string.ascii_letters + string.digits + "!@#$%^&*(-_+)"
-    return "".join([random.SystemRandom().choice(choice_set) for i in range(length)])
+    chars = 'abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*(-_=+)'
+    return ''.join(secrets.choice(chars) for _ in range(length))
 
 
 def main():
