@@ -1,6 +1,6 @@
 # GriceTurrble's Django 3 site template
 
-A [`cookiecutter`][1] template for a basic Django 3.2 site, with some helpful base abstract models, [Bootstrap 4][2], [FontAwesome 5][3] Free, and some starter templates.
+A [`cookiecutter`][1] template for a basic Django 3.2 site, with some helpful base abstract models, [Bootstrap 4.6.0][2], [FontAwesome 5.15.3][3] Free, and some starter templates.
 
 ## Requirements
 
@@ -148,7 +148,7 @@ The front page you see when you first launch the project is a static template th
   - Since this is a template for a new project, you _should_ be (and I highly recommend) using the latest stable Python release that Django and your other dependencies support.
 
 [1]: https://github.com/cookiecutter/cookiecutter
-[2]: https://getbootstrap.com/
+[2]: https://getbootstrap.com/docs/4.6/getting-started/introduction/
 [3]: https://fontawesome.com/
 [4]: https://docs.djangoproject.com/en/3.2/topics/db/models/#abstract-base-classes
 [5]: https://docs.djangoproject.com/en/3.2/ref/models/querysets/#date
