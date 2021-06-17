@@ -6,4 +6,4 @@
 
 Django>=3.2,<3.3
 django-environ>=0.4.5,<0.5
-psycopg2>=2.8.6,<2.9
+psycopg2>=2.8.6,<2.10
