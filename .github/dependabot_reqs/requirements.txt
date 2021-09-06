@@ -5,5 +5,5 @@
 # and let dependabot use this file for dependency checks.
 
 Django>=3.2,<3.3
-django-environ>=0.4.5,<0.5
+django-environ>=0.4.5,<0.7
 psycopg2>=2.8.6,<2.9
