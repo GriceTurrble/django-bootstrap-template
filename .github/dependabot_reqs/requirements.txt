@@ -4,6 +4,7 @@
 # To fix that, we compile all requirements for all template options here,
 # and let dependabot use this file for dependency checks.
 
-Django>=3.2,<3.3
-django-environ>=0.4.5,<0.5
-psycopg2>=2.8.6,<2.9
+Django~=3.2
+django-environ~=0.6
+psycopg2-binary~=2.9
+pytz>=2021.1
