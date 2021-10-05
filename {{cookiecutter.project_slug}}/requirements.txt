@@ -6,4 +6,3 @@ django-environ~=0.7.0
 # See: https://www.psycopg.org/docs/install.html#psycopg-vs-psycopg-binary
 psycopg2-binary~=2.9.1
 {% endif %}
-pytz>=2021.1
