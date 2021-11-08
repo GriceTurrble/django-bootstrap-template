@@ -1,7 +1,7 @@
 version: 2
 updates:
 - package-ecosystem: pip
-  directory: "/.github/dependabot_reqs/"
+  directory: "/{{cookiecutter.project_slug}}/"
   schedule:
     interval: daily
     time: "08:00"

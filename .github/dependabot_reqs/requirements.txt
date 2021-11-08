@@ -1,9 +1,0 @@
-# Dependabot is flakey with the syntax for requirements. We want requirements to be
-# built dynamically, but it cannot resolve Jinja template syntax, throwing an error.
-
-# To fix that, we compile all requirements for all template options here,
-# and let dependabot use this file for dependency checks.
-
-Django~=3.2.9
-django-environ~=0.8.1
-psycopg2-binary~=2.9.1
