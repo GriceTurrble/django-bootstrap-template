@@ -1,11 +1,17 @@
 # Django Bootstrap site template
 
-A [`cookiecutter`][1] template for a basic Django 3.2 site, with some helpful base abstract models, [Bootstrap 4.6.0][2], [FontAwesome 5.15.3][3] Free, and some starter templates.
+A [cookiecutter] template for a basic [Django] site, with some helpful base abstract models, [Bootstrap], [FontAwesome], and some starter templates.
+
+Includes:
+
+- Django 3.2
+- Bootstrap 4.6.0
+- FontAwesome 5.15.3 Free edition
 
 ## Requirements
 
-- **Python 3.6+**. This is the [minimum supported version by Django 3.2][12], and is required for type hinting and f-string support.
-- [`cookiecutter`][1] (install with Pip using the command in the **Installation** instructions below.
+- **Python 3.6+**. This is the [minimum supported version by Django 3.2][django_32_release_notes], and is required for type hinting and f-string support.
+- [cookiecutter] (install with Pip using the command in the **Installation** instructions below.
 - An amazing new project idea you want to bring to life quickly.
 
 ## Installation
@@ -55,7 +61,7 @@ Here are some details on what this project template contains:
 
 ### The `MyBaseModel` abstract model
 
-Your new project's `core` directory contains [abstract models][4], utility methods, and other "common" objects you may use elsewhere in your site. Think of it as a root directory for custom Django objects.
+Your new project's `core` directory contains [abstract models], utility methods, and other "common" objects you may use elsewhere in your site. Think of it as a root directory for custom Django objects.
 
 A single abstract model, `MyBaseModel`, is currently available. This includes a custom QuerySet used as its model manager, `MyBaseQuerySet`. You may subclass `MyBaseModel` for each model in your application, instead of the standard `models.Model`:
 
@@ -76,8 +82,8 @@ For starters, this means the time-tracking fields `created_at` and `updated_at`,
 | --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `created_before(dt)`        | Model instances created (via `created_at`) before `dt` (a `datetime.datetime` or `datetime.date` object), inclusive (will return instances of `dt == created_at`). |
 | `created_after(dt)`         | Instances created after `dt`.                                                                                                                                      |
-| `created_on_date(dt)`       | Instances created on the date of `dt`. Uses Django's [date field lookup][5]. `dt` is coerced to a `datetime.date` object before being used in the query.           |
-| `created_between(dt1, dt2)` | Instances created between `dt1` and `dt2`, inclusive. Uses Django's [range field lookup][6] (Note the warnings in their documentation for edge cases).             |
+| `created_on_date(dt)`       | Instances created on the date of `dt`. Uses Django's [date field lookup]. `dt` is coerced to a `datetime.date` object before being used in the query.           |
+| `created_between(dt1, dt2)` | Instances created between `dt1` and `dt2`, inclusive. Uses Django's [range field lookup] (Note the warnings in their documentation for edge cases).             |
 | `updated_before(dt)`        | Same as `created_before`, for `updated_at` field.                                                                                                                  |
 | `updated_after(dt)`         | Same as `created_after`, for `updated_at` field.                                                                                                                   |
 | `updated_on_date(dt)`       | Same as `created_on_date`, for `updated_at` field.                                                                                                                 |
@@ -104,7 +110,7 @@ Note that last part: that's where it can get tricky.
 
 When you want to add custom fields to a model that subclasses `MyBaseModel`, you may also be inclined to make a new QuerySet and/or Manager class and assign this to the `objects` manager on that model. However, doing so will overwrite `MyBaseQuerySet` as a manager of that model, making its methods unavailable.
 
-Django's documentation regarding [Custom managers and model inheritance][7] is quite helpful here. However, their solution revolves around creating multiple managers for a subclassed abstract model with its own base manager, so that you may need to reference a different manager besides `objects`.
+Django's documentation regarding [Custom managers and model inheritance][manager_model_inheritance] is quite helpful here. However, their solution revolves around creating multiple managers for a subclassed abstract model with its own base manager, so that you may need to reference a different manager besides `objects`.
 
 Personally, I find it frustrating to use any other manager besides `objects` unless absolutely necessary; and I want to retain the ability to chain all the different custom methods together. My solution and recommendation is to subclass `MyBaseQuerySet`, then use the subclass as the new model's manager:
 
@@ -135,7 +141,7 @@ The front page you see when you first launch the project is a static template th
 - The main template, `homepage.html`, extends a base template from which all other site templates can be built to give a uniform look and feel. Find this at `templates/base.html` to see its code.
 - The base template brings in Bootstrap 4.6.0 CSS and JS via CDN; FontAwesome 5.15.3 free edition icons via a local copy, served as a deferred script to load SVG icons; and site-specific CSS and JS files, which you'll find in `<project_name>/static/` and that you can edit freely.
 - The base template also includes "widget"-style templates for `base_navbar.html` and `base_footer.html`, which inject a Bootstrap navbar in the top of each page and a custom footer, respectively. Separating templates in this way is helpful for compartmentalizing and re-using content: your templates don't need to be one-file monoliths!
-  - Note also how `base_navbar.html` adds in a link to the Admin index. See more details on writing Admin URLs [here][8]
+  - Note also how `base_navbar.html` adds in a link to the Admin index. See more details on writing Admin URLs [here][reversing_admin_urls]
 - You'll see `homepage.html` has very little code; in fact, all it does is include another "widget"-style template, `welcome_wagon.html`, which contains all the contents of the front page. You can quickly remove the "welcome wagon" display by removing the `{% include %}` tag for that template, giving you a blank slate to start from.
   - I would recommend keeping the `welcome_wagon.html` file in your project as a reference.
 - One last template, `template_of_templates.html`, contains a basis for new site templates. It includes the `{% extends %}` tag for `base.html` and a copy of each `{% block %}` tag used in that base template. You can easily start up a new page by copying this file, adding the content you need, and removing the blocks you aren't changing.
@@ -144,18 +150,17 @@ The front page you see when you first launch the project is a static template th
 
 - A project-level `static/` directory is available to dump static files that don't fit within an app structure. You can still use app-level static files as needed (and remember to run `collectstatic` in production!), but it's good to have a central spot for site-level static content.
 - The project is automatically built with the license of your choice, including your entry for Author Name and the current year.
-- The models, querysets, and managers added to `core` have some sparse [type hinting][11] built in. Running the project in Python <3.5 (which is [not supported in Django, anyway][12]) will cause errors due to these type hints.
+- The models, querysets, and managers added to `core` have some sparse [type hinting] built in. Running the project in Python <3.5 (which is [not supported in Django, anyway][12]) will cause errors due to these type hints.
   - Since this is a template for a new project, you _should_ be (and I highly recommend) using the latest stable Python release that Django and your other dependencies support.
 
-[1]: https://github.com/cookiecutter/cookiecutter
-[2]: https://getbootstrap.com/docs/4.6/getting-started/introduction/
-[3]: https://fontawesome.com/
-[4]: https://docs.djangoproject.com/en/3.2/topics/db/models/#abstract-base-classes
-[5]: https://docs.djangoproject.com/en/3.2/ref/models/querysets/#date
-[6]: https://docs.djangoproject.com/en/3.2/ref/models/querysets/#range
-[7]: https://docs.djangoproject.com/en/3.2/topics/db/managers/#custom-managers-and-model-inheritance
-[8]: https://docs.djangoproject.com/en/3.2/ref/contrib/admin/#reversing-admin-urls
-[9]: https://docs.djangoproject.com/en/3.2/ref/applications/
-[10]: https://docs.djangoproject.com/en/3.2/topics/signals/#connecting-receiver-functions
-[11]: https://docs.python.org/3/library/typing.html
-[12]: https://docs.djangoproject.com/en/3.2/releases/3.2/
+[abstract models]: https://docs.djangoproject.com/en/3.2/topics/db/models/#abstract-base-classes
+[Bootstrap]: https://getbootstrap.com/docs/4.6/getting-started/introduction/
+[cookiecutter]: https://github.com/cookiecutter/cookiecutter
+[date field lookup]: https://docs.djangoproject.com/en/3.2/ref/models/querysets/#date
+[django_32_release_notes]: https://docs.djangoproject.com/en/3.2/releases/3.2/
+[Django]: https://www.djangoproject.com/
+[FontAwesome]: https://fontawesome.com/
+[manager_model_inheritance]: https://docs.djangoproject.com/en/3.2/topics/db/managers/#custom-managers-and-model-inheritance
+[range field lookup]: https://docs.djangoproject.com/en/3.2/ref/models/querysets/#range
+[reversing_admin_urls]: https://docs.djangoproject.com/en/3.2/ref/contrib/admin/#reversing-admin-urls
+[type hinting]: https://docs.python.org/3/library/typing.html
