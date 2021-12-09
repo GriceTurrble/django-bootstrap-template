@@ -10,6 +10,7 @@ Includes:
 
 ## Requirements
 
+- Python 3.8+, as required by Django 4.0. See [Django 4.0 release notes](https://docs.djangoproject.com/en/4.0/releases/4.0/#python-compatibility) for details.
 - [cookiecutter] (install with Pip using the command in the **Installation** instructions below.
 - An amazing new project idea you want to bring to life quickly.
 
