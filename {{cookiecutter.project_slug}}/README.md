@@ -2,7 +2,7 @@
 
 {{ cookiecutter.description }}
 
-[![Built with Django3 Site Template](https://img.shields.io/badge/Built%20with-Django3%20Site%20Template-blueviolet.svg)](https://github.com/griceturrble/django3-site-template/) [![Black code style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
+[![Built with Django Bootstrap Template](https://img.shields.io/badge/Built%20with-Django%20Bootstrap%20Template-blueviolet.svg)](https://github.com/griceturrble/django-bootstrap-template/) [![Black code style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
 
 {% if cookiecutter.open_source_license != "Not open source" %}
 ## License

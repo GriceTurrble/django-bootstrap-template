@@ -1,4 +1,4 @@
-# GriceTurrble's Django 3 site template
+# Django Bootstrap site template
 
 A [`cookiecutter`][1] template for a basic Django 3.2 site, with some helpful base abstract models, [Bootstrap 4.6.0][2], [FontAwesome 5.15.3][3] Free, and some starter templates.
 
@@ -19,7 +19,7 @@ pip install cookiecutter
 Next, use the `cookiecutter` command, providing the link to this repo, like so:
 
 ```bash
-cookiecutter https://github.com/GriceTurrble/django3-site-template.git
+cookiecutter https://github.com/GriceTurrble/django-bootstrap-template.git
 ```
 
 Follow the prompts to set up the project to your liking:
