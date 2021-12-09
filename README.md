@@ -5,7 +5,7 @@ A [cookiecutter] template for a basic [Django] site, with some helpful base abst
 Includes:
 
 - Django 4.0
-- Bootstrap 4.6.0
+- Bootstrap 5.1.3
 - FontAwesome 5.15.4 Free edition
 
 ## Requirements
@@ -139,7 +139,7 @@ The front page you see when you first launch the project is a static template th
 
 - The page is served by a generic `TemplateView` defined in `<project_slug>/core/urls.py`, right below the standard `admin` path; no extra view code required! If you want to serve some static pages, this is a good example to follow.
 - The main template, `homepage.html`, extends a base template from which all other site templates can be built to give a uniform look and feel. Find this at `templates/base.html` to see its code.
-- The base template brings in Bootstrap 4.6.0 CSS and JS via CDN; FontAwesome 5.15.4 free edition icons via a local copy, served as a deferred script to load SVG icons; and site-specific CSS and JS files, which you'll find in `<project_name>/static/` and that you can edit freely.
+- The base template brings in Bootstrap CSS and JS via CDN; FontAwesome free edition icons via a local copy, served as a deferred script to load SVG icons; and site-specific CSS and JS files, which you'll find in `<project_name>/static/` and that you can edit freely.
 - The base template also includes "widget"-style templates for `base_navbar.html` and `base_footer.html`, which inject a Bootstrap navbar in the top of each page and a custom footer, respectively. Separating templates in this way is helpful for compartmentalizing and re-using content: your templates don't need to be one-file monoliths!
   - Note also how `base_navbar.html` adds in a link to the Admin index. See more details on writing Admin URLs [here][reversing_admin_urls]
 - You'll see `homepage.html` has very little code; in fact, all it does is include another "widget"-style template, `welcome_wagon.html`, which contains all the contents of the front page. You can quickly remove the "welcome wagon" display by removing the `{% include %}` tag for that template, giving you a blank slate to start from.
@@ -154,7 +154,7 @@ The front page you see when you first launch the project is a static template th
   - Since this is a template for a new project, you _should_ be (and I highly recommend) using the latest stable Python release that Django and your other dependencies support.
 
 [abstract models]: https://docs.djangoproject.com/en/4.0/topics/db/models/#abstract-base-classes
-[Bootstrap]: https://getbootstrap.com/docs/4.6/getting-started/introduction/
+[Bootstrap]: https://getbootstrap.com/docs/5.1/getting-started/introduction/
 [cookiecutter]: https://github.com/cookiecutter/cookiecutter
 [date field lookup]: https://docs.djangoproject.com/en/4.0/ref/models/querysets/#date
 [Django]: https://www.djangoproject.com/
