@@ -4,13 +4,12 @@ A [cookiecutter] template for a basic [Django] site, with some helpful base abst
 
 Includes:
 
-- Django 3.2
+- Django 4.0
 - Bootstrap 4.6.0
 - FontAwesome 5.15.3 Free edition
 
 ## Requirements
 
-- **Python 3.6+**. This is the [minimum supported version by Django 3.2][django_32_release_notes], and is required for type hinting and f-string support.
 - [cookiecutter] (install with Pip using the command in the **Installation** instructions below.
 - An amazing new project idea you want to bring to life quickly.
 
@@ -153,14 +152,13 @@ The front page you see when you first launch the project is a static template th
 - The models, querysets, and managers added to `core` have some sparse [type hinting] built in. Running the project in Python <3.5 (which is [not supported in Django, anyway][12]) will cause errors due to these type hints.
   - Since this is a template for a new project, you _should_ be (and I highly recommend) using the latest stable Python release that Django and your other dependencies support.
 
-[abstract models]: https://docs.djangoproject.com/en/3.2/topics/db/models/#abstract-base-classes
+[abstract models]: https://docs.djangoproject.com/en/4.0/topics/db/models/#abstract-base-classes
 [Bootstrap]: https://getbootstrap.com/docs/4.6/getting-started/introduction/
 [cookiecutter]: https://github.com/cookiecutter/cookiecutter
-[date field lookup]: https://docs.djangoproject.com/en/3.2/ref/models/querysets/#date
-[django_32_release_notes]: https://docs.djangoproject.com/en/3.2/releases/3.2/
+[date field lookup]: https://docs.djangoproject.com/en/4.0/ref/models/querysets/#date
 [Django]: https://www.djangoproject.com/
 [FontAwesome]: https://fontawesome.com/
-[manager_model_inheritance]: https://docs.djangoproject.com/en/3.2/topics/db/managers/#custom-managers-and-model-inheritance
-[range field lookup]: https://docs.djangoproject.com/en/3.2/ref/models/querysets/#range
-[reversing_admin_urls]: https://docs.djangoproject.com/en/3.2/ref/contrib/admin/#reversing-admin-urls
+[manager_model_inheritance]: https://docs.djangoproject.com/en/4.0/topics/db/managers/#custom-managers-and-model-inheritance
+[range field lookup]: https://docs.djangoproject.com/en/4.0/ref/models/querysets/#range
+[reversing_admin_urls]: https://docs.djangoproject.com/en/4.0/ref/contrib/admin/#reversing-admin-urls
 [type hinting]: https://docs.python.org/3/library/typing.html
