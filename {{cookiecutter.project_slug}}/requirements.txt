@@ -4,5 +4,5 @@ django-environ~=0.8.1
 # NOTE: if you have trouble installing psycopg2 while developing,
 # consider changing your requirement to use `psycopg2-binary`
 # See: https://www.psycopg.org/docs/install.html#psycopg-vs-psycopg-binary
-psycopg2-binary~=2.9.2
+psycopg2-binary~=2.9.3
 # {% endif %}
