@@ -1,4 +1,4 @@
-Django~=5.0
+Django~=5.1
 django-environ~=0.11.2
 # {% if cookiecutter.database_backend == 'postgres' %}
 # NOTE: if you have trouble installing psycopg2 while developing,
